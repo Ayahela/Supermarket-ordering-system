@@ -1,5 +1,7 @@
 from tkinter import *
+import tkinter as tk
 from tkinter import messagebox
+from PIL import Image, ImageTk
 import webbrowser
 import os  
 import sys
@@ -33,4 +35,15 @@ B5=Button(F1,text='Communication With Us',width=26,fg='black',bg='#DBA901',font=
 B5.place(x=1,y=330)
 B6=Button(F1,text='Close The Website',width=26,fg='black',bg='#DBA901',font=('Arial',11, 'bold'))
 B6.place(x=1,y=380)
+
+# تحميل وتغيير حجم الصورة
+image = Image.open(r'C:\shop.JPG')
+image = image.resize((250, 250))  # حجم مناسب للواجهة
+photo = ImageTk.PhotoImage(image)
+
+# وضع الصورة في منتصف المساحة الرمادية
+label = Label(pro, image=photo, bg='#F2F2F2')  # خلي الخلفية زي الخلفية الرمادية
+label.image = photo
+label.place(x=275, y=100)  # تقريبًا في النص (800 عرض - 250 للصورة - 230 للفريم = 320 فراغ)
+
 pro.mainloop()
