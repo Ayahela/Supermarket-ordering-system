@@ -34,8 +34,7 @@ B4.place(x=1,y=280)
 B5=Button(F1,text='Communication With Us',width=26,fg='black',bg='#DBA901',font=('Arial',11, 'bold'))
 B5.place(x=1,y=330)
 B6=Button(F1,text='Close The Website',width=26,fg='black',bg='#DBA901',font=('Arial',11, 'bold'))
-B6.place(x=1,y=380)
-
+B6.place(x=1,y=380) 
 # تحميل وتغيير حجم الصورة
 image = Image.open(r'C:\shop.JPG')
 image = image.resize((250, 250))  # حجم مناسب للواجهة
