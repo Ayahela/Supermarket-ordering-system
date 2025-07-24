@@ -38,14 +38,7 @@ def log():
         messagebox.showinfo('hello','WelcomeBack ')
     else:
         messagebox.showerror('error','sorry passwoed in wrong')    
-        
-
-
-
-
-
-
-
+    
 
 # المستطيل الأحمر
 F1 = Frame(pro, width=230, height=500, bg='#0B2F3A')
@@ -70,39 +63,42 @@ B6=Button(F1,text='Close The Website',width=26,fg='black',bg='#DBA901',font=('Ar
 B6.place(x=1,y=380)
 
 # تحميل وتغيير حجم الصورة
-# تحميل وتغيير حجم الصورة
-image = Image.open(r'C:\\shop.png')
-#image = image.resize((300, 300))  # حجم مناسب للواجهة
+# الصورة الأولى
+image = Image.open(r'C:\shop.jpg')
+image = image.resize((300, 300))  # ضبط الحجم ليتوافق مع place
 photo = ImageTk.PhotoImage(image)
 
-image_label = Label(pro, image=photo)
-image_label.place(x=120, y=43,width=308,height=300)  # 150 ده ارتفاع الصورة، غيريه حسب مكانك
-pro.configure(bg='white')  # Set the background color to white
-#الجزء اللي تحت 
-F2=Frame(pro,width=570,height=170,bg='#0B2F3A')
-F2.place(x=0,y=330)
+image_label = Label(pro, image=photo, bg='white', bd=0)  # إزالة الإطار الأسود
+image_label.image = photo  # مهم جدًا علشان الصورة ما تختفيش
+image_label.place(x=120, y=43, width=308, height=300)
 
-image2 = Image.open(r'C:\\login(1).png')
+# الجزء اللي تحت
+F2 = Frame(pro, width=570, height=170, bg='#0B2F3A')
+F2.place(x=0, y=330)
+
+# صورة تسجيل الدخول
+image2 = Image.open(r'C:\login(1).jpeg')
 image2 = image2.resize((70, 70))
 image2_tk = ImageTk.PhotoImage(image2)
-
 image2_label = Label(pro, image=image2_tk)
-image2_label.image = image2_tk  # مهم جدًا علشان ما يتمسحش من الـ memory
+image2_label.image = image2_tk
+image2_label.place(x=420, y=335, width=100, height=100)
 
-image2_label.place(x=420,y=335,width=100,height=100)
-L1=Label(F2,text='username',fg='gold',bg='#0B2F3A',font=('tajawal',12))
-L1.place(x=330,y=26)
+# # المدخلات
+L1 = Label(F2, text='username', fg='gold', bg='#0B2F3A', font=('tajawal', 12))
+L1.place(x=330, y=26)
 
-L2=Label(F2,text='password ',fg='gold',bg='#0B2F3A',font=('tajawal',12))
-L2.place(x=330,y=70)
-En1=Entry(F2,font=('tajawal',12),justify='center')
-En1.place(x=130,y=26)
-En2=Entry(F2,font=('tajawal',12),justify='center')
-En2.place(x=130,y=71)
-B=Button(F2,text='login ',bg='#DBA901',font='tajawal',command=log)
-B.place(x=4,y=71)
+L2 = Label(F2, text='password', fg='gold', bg='#0B2F3A', font=('tajawal', 12))
+L2.place(x=330, y=70)
 
+En1 = Entry(F2, font=('tajawal', 12), justify='center')
+En1.place(x=130, y=26)
 
+En2 = Entry(F2, font=('tajawal', 12), justify='center', show='*')  # تخفي كلمة السر
+En2.place(x=130, y=71)
+
+B = Button(F2, text='login', bg='#DBA901', font=('tajawal', 12), command=log)
+B.place(x=4, y=71)
 
 
 pro.mainloop()
