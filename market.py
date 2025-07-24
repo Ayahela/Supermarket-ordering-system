@@ -12,7 +12,7 @@ pro.title('Supermarket')
 pro.iconbitmap(r'C:\super.ico')
 
 # العنوان
-title = Label(pro, text='Super Market System', fg='yellow', bg='black', font=('Arial', 20, 'bold'))
+title = Label(pro, text='Super Market System', fg='#F6B323', bg='black', font=('Arial', 20, 'bold'))
 title.pack(fill='x')
 
 
@@ -49,47 +49,46 @@ Title2=Label(F1,text='Developed by:Team',bg='#0B2F3A',fg='white',font=('Arial',1
 Title2.place(x=25,y=50)
 Title3=Label(F1,text='Contact With Us',bg='#0B2F3A' ,fg='white',font=('Arial',12, 'bold'))
 Title3.place(x=25,y=90)
-B1=Button(F1,text='Account On Facebook',width=26,fg='black',bg='#DBA901',font=('Arial',11, 'bold'),command=Open1)
+B1=Button(F1,text='Account On Facebook',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'),command=Open1)
 B1.place(x=1,y=130)
-B2=Button(F1,text='Account On Telegram',width=26,fg='black',bg='#DBA901',font=('Arial',11, 'bold'),command=OPen2)
+B2=Button(F1,text='Account On Telegram',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'),command=OPen2)
 B2.place(x=1,y=180)
-B3=Button(F1,text='channel On Youtube',width=26,fg='black',bg='#DBA901',font=('Arial',11, 'bold'),command=OPen3)
+B3=Button(F1,text='channel On Youtube',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'),command=OPen3)
 B3.place(x=1,y=230)
-B4=Button(F1,text='Overview Of Our Project',width=26,fg='black',bg='#DBA901',font=('Arial',11, 'bold'),command=about1)
+B4=Button(F1,text='Overview Of Our Project',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'),command=about1)
 B4.place(x=1,y=280)
-B5=Button(F1,text='Communication With Us',width=26,fg='black',bg='#DBA901',font=('Arial',11, 'bold'))
+B5=Button(F1,text='Communication With Us',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'))
 B5.place(x=1,y=330)
-B6=Button(F1,text='Close The Website',width=26,fg='black',bg='#DBA901',font=('Arial',11, 'bold'),command=quit)
+B6=Button(F1,text='Close The Website',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'),command=quit)
 B6.place(x=1,y=380)
 
 # تحميل وتغيير حجم الصورة
 # الصورة الأولى
-image = Image.open(r'C:\shop.jpg')
-image = image.resize((300, 300))  # ضبط الحجم ليتوافق مع place
+image = Image.open(r'C:\shop.png')
+image = image.resize((365,365))  # ضبط الحجم ليتوافق مع place
 photo = ImageTk.PhotoImage(image)
-
-image_label = Label(pro, image=photo, bg='white', bd=0)  # إزالة الإطار الأسود
+image_label = Label(pro, image=photo, bd=0)  # إزالة الإطار الأسود
 image_label.image = photo  # مهم جدًا علشان الصورة ما تختفيش
-image_label.place(x=120, y=43, width=308, height=300)
+image_label.place(x=85, y=40, width=450, height=300)
 
 # الجزء اللي تحت
 F2 = Frame(pro, width=570, height=170, bg='#0B2F3A')
 F2.place(x=0, y=330)
 
 # صورة تسجيل الدخول
-image2 = Image.open(r'C:\login(1).jpeg')
+image2 = Image.open(r'C:\login(1).png')
 image2 = image2.resize((70, 70))
 image2_tk = ImageTk.PhotoImage(image2)
-image2_label = Label(pro, image=image2_tk)
+image2_label = Label(pro, image=image2_tk, bg="#F6B323")
 image2_label.image = image2_tk
-image2_label.place(x=420, y=335, width=100, height=100)
+image2_label.place(x=430, y=335, width=120, height=110)
 
 # # المدخلات
-L1 = Label(F2, text='username', fg='gold', bg='#0B2F3A', font=('tajawal', 12))
-L1.place(x=330, y=26)
+L1 = Label(F2, text='Username', fg='gold', bg='#0B2F3A', font=('tajawal', 15))
+L1.place(x=330, y=22)
 
-L2 = Label(F2, text='password', fg='gold', bg='#0B2F3A', font=('tajawal', 12))
-L2.place(x=330, y=70)
+L2 = Label(F2, text='Password', fg='gold', bg='#0B2F3A', font=('tajawal', 15))
+L2.place(x=330, y=66)
 
 En1 = Entry(F2, font=('tajawal', 12), justify='center')
 En1.place(x=130, y=26)
@@ -97,8 +96,8 @@ En1.place(x=130, y=26)
 En2 = Entry(F2, font=('tajawal', 12), justify='center', show='*')  # تخفي كلمة السر
 En2.place(x=130, y=71)
 
-B = Button(F2, text='login', bg='#DBA901', font=('tajawal', 12), command=log)
-B.place(x=4, y=71)
-
+B = Button(F2, text='login', bg='#F6B323', font=('bold', 17), command=log)
+# B.place(x=4, y=71)
+B.place(x=10, y=25, width=110, height=70 )
 
 pro.mainloop()
