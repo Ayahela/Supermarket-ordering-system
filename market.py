@@ -16,6 +16,7 @@ title = Label(pro, text='Super Market System', fg='#F6B323', bg='black', font=('
 title.pack(fill='x')
 
 
+
 #forth video(fun of each button)
 u1='https://www.facebook.com/onlineshop00432'
 u2='https://t.me/digitalearningwithprishangwithprisha'
