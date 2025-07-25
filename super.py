@@ -309,14 +309,14 @@ class super :
     def welcome(self):
          self.textarea.delete('1.0',END)
          self.textarea.insert(END,"\t welcome to super market ")
-         self.textarea.insert(END,"\n======================================================")
+         self.textarea.insert(END,"\n================================================")
          self.textarea.insert(END,f"\n\t B.NUM : {self.bill.get()}")
          self.textarea.insert(END,f"\n\t  NAME : {self.namo.get()}  ")
          self.textarea.insert(END,f"\n\t PHONE : {self.phono.get()} ")
          self.textarea.insert(END,f"\n\t")
-         self.textarea.insert(END,"\n=============================================")
+         self.textarea.insert(END,"\n================================================")
          self.textarea.insert(END,f"\n price \t  number \t  purchases ")
-         self.textarea.insert(END,"\n======================================================")
+         self.textarea.insert(END,"\n================================================")
 
 
         
