@@ -10,6 +10,16 @@ class super :
         self.root.iconbitmap(r'c:\superLogo.ico')
         title=Label(self.root,text='project management:super market',fg='white',bg='#0B2F3A',font=('tajawal',15))
         title.pack(fill=X)
+        self.bill=StringVar()
+        x=random.randint(1000,9999)
+        self.bill.set(str(x))
+        self.namo=StringVar()
+        self.phono=StringVar()
+
+        #--------variables-------------
+        self.legumes=StringVar()
+        self. householdsupplies=StringVar()
+        self.electricalappliances=StringVar()
         #========بيانات المستخدم========
         F1=Frame(self.root,bd=2,width=338,height=170,bg='#0B4C5F')
         F1.place(x=1189,y=35)
@@ -56,17 +66,17 @@ class super :
         lblo1=Label(F4,text='total charge for legumes',font=('tajawal',10,'bold'),bg='#0B4C5F',fg='gold')
         lblo1.place(x=10,y=10)
 
-        lblo2=Label(F4,text='total charge for household supplies',font=('tajawal',10,'bold'),bg='#0B4C5F',fg='gold')
+        lblo2=Label(F4,text='total charge for householdsupplies',font=('tajawal',10,'bold'),bg='#0B4C5F',fg='gold')
         lblo2.place(x=10,y=40)
         
-        lblo2=Label(F4,text='total charge for electrical appliances',font=('tajawal',10,'bold'),bg='#0B4C5F',fg='gold')
+        lblo2=Label(F4,text='total charge for electricalappliances',font=('tajawal',10,'bold'),bg='#0B4C5F',fg='gold')
         lblo2.place(x=10,y=70)
 
-        ento1=Entry(F4,width=24)
+        ento1=Entry(F4,textvariable=self.legumes,width=24)
         ento1.place(x=250,y=12)
-        ento2=Entry(F4,width=24)
+        ento2=Entry(F4,textvariable=self. householdsupplies,width=24)
         ento2.place(x=250,y=42)
-        ento3=Entry(F4,width=24)
+        ento3=Entry(F4,textvariable=self.electricalappliances ,width=24)
         ento3.place(x=250,y=72)
 
         #-------items[1]---------
@@ -295,8 +305,18 @@ class super :
         bqrnt13.place(x=190,y=535)
         bqrnt14=Entry(FF3,width=12)
         bqrnt14.place(x=190,y=575)
-      
-        
+        self.welcome()
+    def welcome(self):
+         self.textarea.delete('1.0',END)
+         self.textarea.insert(END,"\t welcome to super market ")
+         self.textarea.insert(END,"\n======================================================")
+         self.textarea.insert(END,f"\n\t B.NUM : {self.bill.get()}")
+         self.textarea.insert(END,f"\n\t  NAME : {self.namo.get()}  ")
+         self.textarea.insert(END,f"\n\t PHONE : {self.phono.get()} ")
+         self.textarea.insert(END,f"\n\t")
+         self.textarea.insert(END,"\n=============================================")
+         self.textarea.insert(END,f"\n price \t  number \t  purchases ")
+         self.textarea.insert(END,"\n======================================================")
 
 
         
