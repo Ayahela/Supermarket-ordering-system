@@ -15,8 +15,6 @@ pro.iconbitmap(r'C:\super.ico')
 title = Label(pro, text='Super Market System', fg='#F6B323', bg='black', font=('Arial', 20, 'bold'))
 title.pack(fill='x')
 
-
-
 #forth video(fun of each button)
 u1='https://www.facebook.com/onlineshop00432'
 u2='https://t.me/digitalearningwithprishangwithprisha'
@@ -39,8 +37,6 @@ def log():
         messagebox.showinfo('hello','WelcomeBack ')
     else:
         messagebox.showerror('error','sorry passwoed in wrong')    
-    
-
 # المستطيل الأحمر
 F1 = Frame(pro, width=230, height=500, bg='#0B2F3A')
 F1.pack(side='right', fill='y')  # ممكن كمان تستخدم fill='both' لو عايزة يغطي كامل الطول
