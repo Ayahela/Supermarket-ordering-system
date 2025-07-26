@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 import webbrowser
 import os  
 import sys
+from super import super  
 pro = Tk()
 pro.geometry('800x450+280+50')
 pro.resizable(False, False)
@@ -31,12 +32,16 @@ def about2():
     messagebox.showinfo('project','supermarket project on tinkerkat with python:)')      
 
 def log():
-    user=En1.get()
-    password=En2.get()
-    if user == 'BFCAI' and password=='supermarket':
-        messagebox.showinfo('hello','WelcomeBack ')
+    user = En1.get()
+    password = En2.get()
+    if user == 'BFCAI' and password == 'supermarket':
+        pro.destroy()
+        root = tk.Tk()
+        app = super(root)
+        root.mainloop()
     else:
-        messagebox.showerror('error','sorry passwoed in wrong')    
+        messagebox.showerror('error', 'sorry password is wrong')
+   
 
 # المستطيل الأحمر
 F1 = Frame(pro, width=230, height=500, bg='#0B2F3A')
