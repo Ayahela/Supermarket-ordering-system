@@ -1,12 +1,14 @@
 from tkinter import*
 import math , os ,random
 from tkinter import messagebox
+
 class super :
-    def __init__(self,root):
+     
+     def __init__(self,root):
         self.root=root
         self.root.geometry('1840x960')
         self.root.title('Super-Market')
-        # self.root.resizable(False,False)
+        self.root.resizable(False,False)
         self.root.iconbitmap(r'c:\superLogo.ico')
         title=Label(self.root,text='project management:super market',fg='white',bg='#0B2F3A',font=('tajawal',15))
         title.pack(fill=X)
@@ -15,7 +17,12 @@ class super :
         self.bill.set(str(x))
         self.namo=StringVar()
         self.phono=StringVar()
-
+        ##############################
+        def clear_all_entries():
+          clear
+          for entry in entries:
+           entry.delete(0, END)
+         ###############################
         #--------variables-------------
         self.legumes=StringVar()
         self. householdsupplies=StringVar()
@@ -128,7 +135,7 @@ class super :
         hesab.place(x=560,y=10)
         fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
         fatora.place(x=560,y=55)
-        clear=Button(F4,text='Clear all',width=13,height=1,font='tajawal',bg='#DBA901')
+        clear=Button(F4,text='Clear all',width=13,height=1,font='tajawal',bg='#DBA901',command=clear_all_entries )
         clear.place(x=405,y=10)
         exite=Button(F4,text='exite',width=13,height=1,font='tajawal',bg='#DBA901')
         exite.place(x=405,y=55)
@@ -148,6 +155,7 @@ class super :
         ento2.place(x=250,y=42)
         ento3=Entry(F4,textvariable=self.electricalappliances ,width=24)
         ento3.place(x=250,y=72)
+        entries=[ento1,ento2,ento3]
 
         #-------items[1]---------
         FF1=Frame(root,bd=2,width=380,height=745,bg='#0B4C5F')
@@ -376,7 +384,8 @@ class super :
         bqrnt14=Entry(FF3,textvariable=self.qqq14,width=12)
         bqrnt14.place(x=190,y=575)
         self.welcome()
-    def welcome(self):
+
+     def welcome(self):
          self.textarea.delete('1.0',END)
          self.textarea.insert(END,"\t welcome to super market ")
          self.textarea.insert(END,"\n================================================")
@@ -387,7 +396,7 @@ class super :
          self.textarea.insert(END,"\n================================================")
          self.textarea.insert(END,f"\n price \t  number \t  purchases ")
          self.textarea.insert(END,"\n================================================")
-
+  
 
         
 # root=Tk()
