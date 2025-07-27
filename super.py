@@ -398,7 +398,6 @@ class super :
          self.textarea.insert(END,f"\n price \t  number \t  purchases ")
          self.textarea.insert(END,"\n================================================")
   
-
 # root=Tk()
 # ob=super(root)
 # root.mainloop()
