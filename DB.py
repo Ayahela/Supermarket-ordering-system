@@ -106,14 +106,14 @@ def add_bill(self):
     conn = sqlite3.connect("supermarket.db")
     cursor = conn.cursor()
 
-    customer_id = get_or_create_customer(name, phone)
+    #customer_id = get_or_create_customer(name, phone)
 
     # محاولة إنشاء الفاتورة
-    try:
-        create_bill(customer_id, bill_no)
-    except sqlite3.IntegrityError:
-        messagebox.showerror("خطأ", f"رقم الفاتورة {bill_no} موجود بالفعل!")
-        return
+    # try:
+    #     create_bill(customer_id, bill_no)
+    # except sqlite3.IntegrityError:
+    #     messagebox.showerror("خطأ", f"رقم الفاتورة {bill_no} موجود بالفعل!")
+    #     return
 
     # إضافة تفاصيل الفاتورة
     items = self.legumes_vars + self.household_vars + self.electrical_vars
