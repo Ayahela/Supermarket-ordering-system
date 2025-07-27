@@ -85,13 +85,83 @@ def clear_all_db(self):
 
     messagebox.showinfo("تم", "تم مسح كل البيانات بنجاح")
 def charge_db():
+conn.close()
+# --------------------------------------------------------
+
+
+
+def add_bill(self):
+    name = self.name_var.get().strip()
+    phone = self.phone_var.get().strip()
+    bill_no = self.bill_var.get().strip()
+
+    if not name or not phone or not bill_no:
+        messagebox.showerror("خطأ", "يرجى ملء كل الحقول")
+        return
+
+    try:
+        bill_no = int(bill_no)
+    except ValueError:
+        messagebox.showerror("خطأ", "رقم الفاتورة لازم يكون رقم")
+        return
+
+    conn = sqlite3.connect("supermarket.db")
+    cursor = conn.cursor()
+
+    customer_id = get_or_create_customer(name, phone)
+
+    # محاولة إنشاء الفاتورة
+    try:
+        create_bill(customer_id, bill_no)
+    except sqlite3.IntegrityError:
+        messagebox.showerror("خطأ", f"رقم الفاتورة {bill_no} موجود بالفعل!")
+        return
+
+    # إضافة تفاصيل الفاتورة
+    items = self.legumes_vars + self.household_vars + self.electrical_vars
+    item_ids = list(range(1, len(items)+1))  # لازم يكون ترتيب الأصناف بنفس ترتيب الجدول
+
+    for var, item_id in zip(items, item_ids):
+        quantity = int(var.get())
+        if quantity > 0:
+            # هات السعر من جدول Items
+            cursor.execute("SELECT UnitPrice FROM Items WHERE ItemID=?", (item_id,))
+            result = cursor.fetchone()
+            if result:
+                price = result[0] * quantity
+                cursor.execute("""
+                    INSERT INTO BillDetails (BillNumber, ItemID, Quantity, Price)
+                    VALUES (?, ?, ?, ?)
+                """, (bill_no, item_id, quantity, price))
+
+    conn.commit()
+    conn.close()
+    messagebox.showinfo("تم", f"تمت إضافة الفاتورة رقم {bill_no} بنجاح")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def charge_db(name_var, phone_var, bill_var,
+              legumes_vars, legumes_names,
+              household_vars, household_names,
+              electrical_vars, electrical_names):
+    
     import sqlite3
     from tkinter import messagebox
 
     conn = sqlite3.connect("supermarket.db")
     cursor = conn.cursor()
 
-    # قراءة بيانات العميل والفاتورة من الواجهة
     name = name_var.get()
     phone = phone_var.get()
     bill_number = bill_var.get()
@@ -100,17 +170,18 @@ def charge_db():
         messagebox.showwarning("تحذير", "يرجى إدخال اسم العميل ورقم الهاتف ورقم الفاتورة")
         return
 
-    # الحصول على ID العميل أو إضافته
+    # التحقق إذا كان العميل موجود مسبقًا
     cursor.execute("SELECT CustomerID FROM Customers WHERE CustomerName=? AND Phone=?", (name, phone))
     result = cursor.fetchone()
     if result:
         customer_id = result[0]
     else:
+        # إدخال عميل جديد
         cursor.execute("INSERT INTO Customers (CustomerName, Phone) VALUES (?, ?)", (name, phone))
         conn.commit()
         customer_id = cursor.lastrowid
 
-    # إدخال الفاتورة
+    # محاولة إدخال الفاتورة
     try:
         cursor.execute("INSERT INTO Bills (BillNumber, CustomerID) VALUES (?, ?)", (bill_number, customer_id))
         conn.commit()
@@ -118,7 +189,11 @@ def charge_db():
         messagebox.showerror("خطأ", f"رقم الفاتورة {bill_number} موجود بالفعل!")
         return
 
-    # حفظ الأصناف
+
+
+
+
+    # إدخال الأصناف في تفاصيل الفاتورة
     def insert_items(category_vars, category_names):
         for var, name in zip(category_vars, category_names):
             qty = int(var.get())
@@ -141,6 +216,3 @@ def charge_db():
     conn.close()
 
     messagebox.showinfo("تم", f"تم حفظ الفاتورة رقم {bill_number} بنجاح")
-
-conn.commit()
-conn.close()

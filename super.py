@@ -3,6 +3,7 @@ import math , os ,random
 from tkinter import messagebox
 from DB import get_or_create_customer, create_bill 
 import tkinter as tk
+from DB import charge_db
 class super :
      def __init__(self,root):
         self.root=root
@@ -17,6 +18,9 @@ class super :
         self.bill.set(str(x))
         self.namo=StringVar()
         self.phono=StringVar()
+        self.name_var = StringVar()
+        self.phone_var = StringVar()
+        self.bill_var = StringVar()
         ##############################
         def clear_all_entries():
           clear
@@ -133,8 +137,14 @@ class super :
         #------price-------
         F4=Frame(root,bd=2,width=720,height=122,bg='#0B4C5F')
         F4.place(x=790,y=650)
-        hesab=Button(F4,text='charge',width=13,height=1,font='tajawal',bg='#DBA901')
+        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901', command= lambda: 
+                       charge_db(self.name_var, self.phone_var, self.bill_var,
+                                                                        
+                      self.legumes_vars, self.legumes_names,
+                      self.household_vars, self.household_names,
+                      self.electrical_vars, self.electrical_names))
         hesab.place(x=560,y=10)
+
         fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
         fatora.place(x=560,y=55)
         clear=Button(F4,text='Clear all',width=13,height=1,font='tajawal',bg='#DBA901',command=clear_all_entries )
