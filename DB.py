@@ -138,19 +138,6 @@ def add_bill(self):
     conn.close()
     messagebox.showinfo("تم", f"تمت إضافة الفاتورة رقم {bill_no} بنجاح")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 def charge_db(name_var, phone_var, bill_var,
               legumes_vars, legumes_names,
               household_vars, household_names,
