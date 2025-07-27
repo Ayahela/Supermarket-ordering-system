@@ -1,5 +1,6 @@
 import sqlite3
 from tkinter import messagebox
+from tkinter import tk
 conn = sqlite3.connect("supermarket.db")
 cursor = conn.cursor()
 
