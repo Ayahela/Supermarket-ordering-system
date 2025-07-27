@@ -51,4 +51,3 @@ CREATE TABLE IF NOT EXISTS BillDetails (
 
 conn.commit()
 conn.close()
-
