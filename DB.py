@@ -1,5 +1,5 @@
 import sqlite3
-
+from tkinter import messagebox
 conn = sqlite3.connect("supermarket.db")
 cursor = conn.cursor()
 
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Items (
     FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
 )
 """)
-
+# إنشاء جدول الفواتير
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Bills (
     BillNumber INTEGER PRIMARY KEY,
@@ -48,6 +48,22 @@ CREATE TABLE IF NOT EXISTS BillDetails (
     FOREIGN KEY (ItemID) REFERENCES Items(ItemID)
 )
 """)
+
+# دالة لإحضار أو إدخال العميل
+def get_or_create_customer(name, phone):
+    cursor.execute("SELECT CustomerID FROM Customers WHERE CustomerName=? AND Phone=?", (name, phone))
+    result = cursor.fetchone()
+    if result:
+        return result[0]
+    else:
+        cursor.execute("INSERT INTO Customers (CustomerName, Phone) VALUES (?, ?)", (name, phone))
+        conn.commit()
+        return cursor.lastrowid
+
+# دالة لإنشاء الفاتورة
+def create_bill(customer_id, bill_number):
+    cursor.execute("INSERT INTO Bills (BillNumber, CustomerID) VALUES (?, ?)", (bill_number, customer_id))
+    conn.commit()
 
 conn.commit()
 conn.close()

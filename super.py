@@ -1,9 +1,8 @@
 from tkinter import*
 import math , os ,random
 from tkinter import messagebox
-
+from DB import get_or_create_customer, create_bill 
 class super :
-     
      def __init__(self,root):
         self.root=root
         self.root.geometry('1840x960')
@@ -52,6 +51,7 @@ class super :
         self.qq2=IntVar()
         self.qq3=IntVar()
         self.qq4=IntVar()
+      
         self.qq5=IntVar()
         self.qq6=IntVar()
         self.qq7=IntVar()
@@ -108,6 +108,7 @@ class super :
         his_phone.place(x=10,y=70)
         bill_num=Label(F1,text='Bill number',font=('tajawal',13),bg='#0B4C5F',fg='white')
         bill_num.place(x=10,y=100)
+
 
         Ent_name=Entry(F1,textvariable=self.namo,width=10)
         Ent_name.place(x=139,y=42)
