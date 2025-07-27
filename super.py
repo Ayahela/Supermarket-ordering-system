@@ -8,7 +8,7 @@ class super :
         self.root=root
         self.root.geometry('1840x960')
         self.root.title('Super-Market')
-        self.root.resizable(False,False)
+      #   self.root.resizable(False,False)
         self.root.iconbitmap(r'c:\superLogo.ico')
         title=Label(self.root,text='project management:super market',fg='white',bg='#0B2F3A',font=('tajawal',15))
         title.pack(fill=X)
