@@ -2,7 +2,7 @@ from tkinter import*
 import math , os ,random
 from tkinter import messagebox
 from DB import get_or_create_customer, create_bill 
-
+import tkinter as tk
 class super :
      def __init__(self,root):
         self.root=root

@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Categories (
 )
 """)
 
-cursor.execute("""
+cursor.execute(""" 
 CREATE TABLE IF NOT EXISTS Items (
     ItemID INTEGER PRIMARY KEY AUTOINCREMENT,
     ItemName TEXT NOT NULL,
