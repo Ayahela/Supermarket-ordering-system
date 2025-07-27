@@ -238,12 +238,7 @@ class super :
         #------price-------
         F4=Frame(root,bd=2,width=720,height=122,bg='#0B4C5F')
         F4.place(x=790,y=650)
-        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901', command= lambda: 
-                       charge_db(self.name_var, self.phone_var, self.bill_var,
-                                                                        
-                      self.legumes_vars, self.legumes_names,
-                      self.household_vars, self.household_names,
-                      self.electrical_vars, self.electrical_names))
+        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901', command=self.charge_total)
         hesab.place(x=560,y=10)
 
 
