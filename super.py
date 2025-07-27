@@ -5,7 +5,107 @@ from DB import create_bill
 import tkinter as tk
 from DB import charge_db
 class super :
+     def exit_app(self):
+       confirm = messagebox.askyesno("Exit", "Are you sure you want to exit?")
+       if confirm:
+         self.root.destroy()
+
+           
+     def charge_total(self):
+
+         # احصاء الاجماليات
+        total_legumes = 0
+        total_household = 0
+        total_electrical = 0
+
+        # البقوليات
+        legumes_vars = [
+         self.q1, self.q2, self.q3, self.q4, self.q5, self.q6, self.q7, self.q8, self.q9,
+         self.q10, self.q11, self.q12, self.q13, self.q14, self.q15, self.q16, self.q17, self.q18
+    ]
+        legumes_names = [
+        'rice', 'bulgur', 'beans', 'lentils', 'noodles', 'freca', 'homos', 'fool', 'salt',
+        'sugar', 'papper', 'red papper', 'green beans', 'lupinus', 'wheat', 'barley', 'oats', 'atom'
+    ]
+        for i in range(18):
+          try:
+            qty = int(legumes_vars[i].get())
+          except:
+            qty = 0
+          if qty > 0:
+            price = qty * self.legumes_prices[i]
+            total_legumes += price
+            self.textarea.insert(END, f"\n{price}\t{qty}\t{legumes_names[i]}")
+
+    # أدوات منزلية
+        household_vars = [
+        self.qq1, self.qq2, self.qq3, self.qq4, self.qq5, self.qq6, self.qq7, self.qq8,
+        self.qq9, self.qq10, self.qq11, self.qq12, self.qq13, self.qq14, self.qq15, self.qq16,
+        self.qq17, self.qq18
+    ]
+        household_names = [
+        'strainer', 'plate', 'glass', 'teapot', 'knife', 'fork', 'pot', 'basket', 'spoons',
+        'tray', 'mixing bowl', 'can opener', 'peeler', 'cutting board', 'corer', 'trash bin', 'duster', 'bags'
+    ]
+        for i in range(18):
+           try:
+            qty = int(household_vars[i].get())
+           except:
+            qty = 0
+           if qty > 0:
+            price = qty * self.household_prices[i]
+            total_household+= price
+            self.textarea.insert(END, f"\n{price}\t{qty}\t{household_names[i]}")
+
+    # الأجهزة الكهربائية
+        electrical_vars = [
+        self.qqq1, self.qqq2, self.qqq3, self.qqq4, self.qqq5, self.qqq6, self.qqq7,
+        self.qqq8, self.qqq9, self.qqq10, self.qqq11, self.qqq12, self.qqq13, self.qqq14
+    ]
+        electrical_names = [
+        'vacuum cleaner', 'television', 'washing machine', 'microwave', 'blender', 'gas oven',
+        'electric fryer', 'ceiling fan', 'standing fan', 'television 32', 'television 43',
+        'water filter', 'iron', 'cooler'
+    ]
+        for i in range(18):
+           try:
+            qty = int(electrical_vars[i].get())
+           except:
+            qty = 0
+           if qty > 0:
+            price = qty * self.electrical_prices[i]
+            total_electrical += price
+            self.textarea.insert(END, f"\n{price}\t{qty}\t{electrical_names[i]}")
+
+    # اجمالي الاقسام
+        self.legumes.set(str(total_legumes))
+        self.householdsupplies.set(str(total_household))
+        self.electricalappliances.set(str(total_electrical))
+
+        self.textarea.insert(END, "\n" + "=" * 48)
+        total_all = total_legumes + total_household + total_electrical
+        self.textarea.insert(END, f"\nTotal Bill: {total_all}")
+        self.textarea.insert(END, "\n" + "=" * 48)
+
+        
+
+         
+
      def __init__(self,root):
+                # === الأسعار لكل قسم ===
+        self.legumes_prices = [
+            15, 12, 18, 20, 10, 14, 16, 13, 5, 10,
+            8, 9, 17, 11, 7, 6, 8, 21
+        ]
+        self.household_prices = [
+            25, 10, 8, 30, 12, 8, 40, 20, 10, 15,
+            35, 18, 14, 22, 16, 50, 10, 6
+        ]
+        self.electrical_prices = [
+            800, 1200, 1400, 600, 350, 1500, 1000,
+            700, 750, 1300, 1600, 950, 500, 2000
+        ]
+
         self.root=root
         self.root.geometry('1840x960')
         self.root.title('Super-Market')
@@ -101,7 +201,8 @@ class super :
         self.legumes=StringVar()
         self. householdsupplies=StringVar()
         self.electricalappliances=StringVar()
-        
+
+     
         #========بيانات المستخدم========
         F1=Frame(self.root,bd=2,width=338,height=170,bg='#0B4C5F')
         F1.place(x=1189,y=35)
@@ -137,19 +238,15 @@ class super :
         #------price-------
         F4=Frame(root,bd=2,width=720,height=122,bg='#0B4C5F')
         F4.place(x=790,y=650)
-        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901', command= lambda: 
-                       charge_db(self.name_var, self.phone_var, self.bill_var,
-                                                                        
-                      self.legumes_vars, self.legumes_names,
-                      self.household_vars, self.household_names,
-                      self.electrical_vars, self.electrical_names))
+        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901',command=self.charge_total)
         hesab.place(x=560,y=10)
+
 
         fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
         fatora.place(x=560,y=55)
         clear=Button(F4,text='Clear all',width=13,height=1,font='tajawal',bg='#DBA901',command=clear_all_entries )
         clear.place(x=405,y=10)
-        exite=Button(F4,text='exite',width=13,height=1,font='tajawal',bg='#DBA901')
+        exite=Button(F4,text='exite',width=13,height=1,font='tajawal',bg='#DBA901',command=self.exit_app)
         exite.place(x=405,y=55)
 
         lblo1=Label(F4,text='total charge for legumes',font=('tajawal',10,'bold'),bg='#0B4C5F',fg='gold')
@@ -163,7 +260,7 @@ class super :
 
         ento1=Entry(F4,textvariable=self.legumes,width=24)
         ento1.place(x=250,y=12)
-        ento2=Entry(F4,textvariable=self. householdsupplies,width=24)
+        ento2=Entry(F4,textvariable=self.householdsupplies,width=24)
         ento2.place(x=250,y=42)
         ento3=Entry(F4,textvariable=self.electricalappliances ,width=24)
         ento3.place(x=250,y=72)
@@ -408,6 +505,9 @@ class super :
          self.textarea.insert(END,"\n================================================")
          self.textarea.insert(END,f"\n price \t  number \t  purchases ")
          self.textarea.insert(END,"\n================================================")
+
+
+
   
 # root=Tk()
 # ob=super(root)
