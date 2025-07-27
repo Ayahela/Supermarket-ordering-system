@@ -1,7 +1,7 @@
 from tkinter import *
 import math , os ,random
 from tkinter import messagebox
-from DB import get_or_create_customer, create_bill 
+from DB import create_bill 
 import tkinter as tk
 from DB import charge_db
 class super :
@@ -121,7 +121,7 @@ class super :
         Ent_phone.place(x=139,y=72)
         Ent_num=Entry(F1,textvariable=self.bill,width=10)
         Ent_num.place(x=139,y=102)
-        btn_customer=Button(F1,text='search',font=('tajawal',12),width=9,height=3,bg='white',)
+        btn_customer=Button(F1,text='Add',font=('tajawal',12),width=9,height=3,bg='white',command=self.welcome)
         btn_customer.place(x=250,y=45)
         #======فاتورة=======
         tited=Label(F1,text='[Bills]',font=('tajawal',15,'bold'),bg='#0B4C5F',fg='gold')
