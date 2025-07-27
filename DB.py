@@ -8,7 +8,8 @@ cursor.execute("""
 CREATE TABLE IF NOT EXISTS Customers (
     CustomerID INTEGER PRIMARY KEY AUTOINCREMENT,
     CustomerName TEXT NOT NULL,
-    Phone TEXT
+    Phone TEXT,
+    bill_no TEXT          
 )
 """)
 
@@ -50,16 +51,13 @@ CREATE TABLE IF NOT EXISTS BillDetails (
 )
 """)
 
-# دالة لإحضار أو إدخال العميل
-def get_or_create_customer(name, phone):
-    cursor.execute("SELECT CustomerID FROM Customers WHERE CustomerName=? AND Phone=?", (name, phone))
-    result = cursor.fetchone()
-    if result:
-        return result[0]
-    else:
-        cursor.execute("INSERT INTO Customers (CustomerName, Phone) VALUES (?, ?)", (name, phone))
-        conn.commit()
-        return cursor.lastrowid
+def insert_customer(name, phone, bill_number):
+    conn = sqlite3.connect('supermarket.db')
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO Customers (name, phone, bill_number) VALUES (?, ?, ?)", (name, phone, bill_number))
+    conn.commit()
+    conn.close()
+
 
 
 def create_bill(customer_id, bill_number):
