@@ -84,7 +84,7 @@ def clear_all_db(self):
     self.textarea.delete("1.0", tk.END)
 
     messagebox.showinfo("تم", "تم مسح كل البيانات بنجاح")
-def charge_db():
+conn.commit()
 conn.close()
 # --------------------------------------------------------
 
