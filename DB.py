@@ -65,5 +65,23 @@ def create_bill(customer_id, bill_number):
     cursor.execute("INSERT INTO Bills (BillNumber, CustomerID) VALUES (?, ?)", (bill_number, customer_id))
     conn.commit()
 
+    
+def clear_all_db(self):
+    # 1. مسح قاعدة البيانات
+    cursor.execute("DELETE FROM Customers")
+    cursor.execute("DELETE FROM Bills")
+    conn.commit()
+
+    # 2. مسح واجهة المستخدم
+    self.name_var.set("")
+    self.phone_var.set("")
+    self.bill_var.set("")
+
+    for var in self.legumes_vars + self.household_vars + self.electrical_vars:
+        var.set("0")
+
+    self.textarea.delete("1.0", tk.END)
+
+    messagebox.showinfo("تم", "تم مسح كل البيانات بنجاح")
 conn.commit()
 conn.close()
