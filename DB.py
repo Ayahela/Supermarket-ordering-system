@@ -84,5 +84,63 @@ def clear_all_db(self):
     self.textarea.delete("1.0", tk.END)
 
     messagebox.showinfo("تم", "تم مسح كل البيانات بنجاح")
+def charge_db():
+    import sqlite3
+    from tkinter import messagebox
+
+    conn = sqlite3.connect("supermarket.db")
+    cursor = conn.cursor()
+
+    # قراءة بيانات العميل والفاتورة من الواجهة
+    name = name_var.get()
+    phone = phone_var.get()
+    bill_number = bill_var.get()
+
+    if not name or not phone or not bill_number:
+        messagebox.showwarning("تحذير", "يرجى إدخال اسم العميل ورقم الهاتف ورقم الفاتورة")
+        return
+
+    # الحصول على ID العميل أو إضافته
+    cursor.execute("SELECT CustomerID FROM Customers WHERE CustomerName=? AND Phone=?", (name, phone))
+    result = cursor.fetchone()
+    if result:
+        customer_id = result[0]
+    else:
+        cursor.execute("INSERT INTO Customers (CustomerName, Phone) VALUES (?, ?)", (name, phone))
+        conn.commit()
+        customer_id = cursor.lastrowid
+
+    # إدخال الفاتورة
+    try:
+        cursor.execute("INSERT INTO Bills (BillNumber, CustomerID) VALUES (?, ?)", (bill_number, customer_id))
+        conn.commit()
+    except sqlite3.IntegrityError:
+        messagebox.showerror("خطأ", f"رقم الفاتورة {bill_number} موجود بالفعل!")
+        return
+
+    # حفظ الأصناف
+    def insert_items(category_vars, category_names):
+        for var, name in zip(category_vars, category_names):
+            qty = int(var.get())
+            if qty > 0:
+                cursor.execute("SELECT ItemID, UnitPrice FROM Items WHERE ItemName = ?", (name,))
+                item = cursor.fetchone()
+                if item:
+                    item_id, unit_price = item
+                    total = qty * unit_price
+                    cursor.execute("""
+                        INSERT INTO BillDetails (BillNumber, ItemID, Quantity, Price)
+                        VALUES (?, ?, ?, ?)
+                    """, (bill_number, item_id, qty, total))
+
+    insert_items(legumes_vars, legumes_names)
+    insert_items(household_vars, household_names)
+    insert_items(electrical_vars, electrical_names)
+
+    conn.commit()
+    conn.close()
+
+    messagebox.showinfo("تم", f"تم حفظ الفاتورة رقم {bill_number} بنجاح")
+
 conn.commit()
 conn.close()
