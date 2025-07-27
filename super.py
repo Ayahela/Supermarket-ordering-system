@@ -1,7 +1,7 @@
 from tkinter import *
 import math , os ,random
 from tkinter import messagebox
-from DB import create_bill 
+from DB import create_bill,insert_customer 
 import tkinter as tk
 from DB import charge_db
 class super :
@@ -137,12 +137,8 @@ class super :
         #------price-------
         F4=Frame(root,bd=2,width=720,height=122,bg='#0B4C5F')
         F4.place(x=790,y=650)
-        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901', command= lambda: 
-                       charge_db(self.name_var, self.phone_var, self.bill_var,
-                                                                        
-                      self.legumes_vars, self.legumes_names,
-                      self.household_vars, self.household_names,
-                      self.electrical_vars, self.electrical_names))
+        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901',command=self.calculate_total)
+                       
         hesab.place(x=560,y=10)
 
         fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
@@ -161,13 +157,13 @@ class super :
         lblo2=Label(F4,text='total charge for electricalappliances',font=('tajawal',10,'bold'),bg='#0B4C5F',fg='gold')
         lblo2.place(x=10,y=70)
 
-        ento1=Entry(F4,textvariable=self.legumes,width=24)
-        ento1.place(x=250,y=12)
-        ento2=Entry(F4,textvariable=self. householdsupplies,width=24)
-        ento2.place(x=250,y=42)
-        ento3=Entry(F4,textvariable=self.electricalappliances ,width=24)
-        ento3.place(x=250,y=72)
-        entries=[ento1,ento2,ento3]
+        self.ento1=Entry(F4,textvariable=self.legumes,width=24,)
+        self.ento1.place(x=250,y=12)
+        self.ento2=Entry(F4,textvariable=self. householdsupplies,width=24)
+        self.ento2.place(x=250,y=42)
+        self.ento3=Entry(F4,textvariable=self.electricalappliances ,width=24)
+        self.ento3.place(x=250,y=72)
+        #entries=[ento1,ento2,ento3]
 
         #-------items[1]---------
         FF1=Frame(root,bd=2,width=380,height=745,bg='#0B4C5F')
@@ -396,6 +392,10 @@ class super :
         bqrnt14=Entry(FF3,textvariable=self.qqq14,width=12)
         bqrnt14.place(x=190,y=575)
         self.welcome()
+        #products prices#
+        PRICE_LEGUMES = 10
+        PRICE_HOUSEHOLD = 15
+        PRICE_ELCTRICAL = 25
 
      def welcome(self):
          self.textarea.delete('1.0',END)
@@ -406,9 +406,23 @@ class super :
          self.textarea.insert(END,f"\n\t PHONE : {self.phono.get()} ")
          self.textarea.insert(END,f"\n\t")
          self.textarea.insert(END,"\n================================================")
-         self.textarea.insert(END,f"\n price \t  number \t  purchases ")
+         self.textarea.insert(END,f"\n price \t  number \t  purchases  ")
          self.textarea.insert(END,"\n================================================")
-  
+     def calculate_total(self):
+   
+              q1 = int(self.ento1.get())
+              q2 = int(self.ento2.get())
+              q3 = int(self.ento3.get())
+              total_legumes=q1 * self.PRICE_LEGUMES
+              self.legumes.set(total_legumes)
+              total_House=q2 * self.PRICE_HOUSEHOLD
+              self.householdsupplies.set(total_House)
+              total_Electric=q3 * self.PRICE_ELCTRICAL
+              self.electricalappliances.set(total_Electric)
+              total = (q1 * self.PRICE_LEGUMES)+ (q2 * self.PRICE_HOUSEHOLD) + (q3 * self.PRICE_ELCTRICAL)
+             
+        
+        
 # root=Tk()
 # ob=super(root)
 # root.mainloop()
