@@ -1,5 +1,5 @@
 from tkinter import *
-import tkinter as tk
+
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import webbrowser
@@ -11,7 +11,6 @@ pro.geometry('800x450+280+50')
 pro.resizable(False, False)
 pro.title('Supermarket')
 pro.iconbitmap(r'C:\super.ico')
-
 # العنوان
 title = Label(pro, text='Super Market System', fg='#F6B323', bg='black', font=('Arial', 20, 'bold'))
 title.pack(fill='x')
