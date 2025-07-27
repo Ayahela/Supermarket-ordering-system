@@ -1,7 +1,7 @@
 from tkinter import *
 import math , os ,random
 from tkinter import messagebox
-from DB import create_bill 
+from DB import create_bill,insert_customer 
 import tkinter as tk
 from DB import charge_db
 class super :
@@ -238,7 +238,12 @@ class super :
         #------price-------
         F4=Frame(root,bd=2,width=720,height=122,bg='#0B4C5F')
         F4.place(x=790,y=650)
-        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901',command=self.charge_total)
+        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901', command= lambda: 
+                       charge_db(self.name_var, self.phone_var, self.bill_var,
+                                                                        
+                      self.legumes_vars, self.legumes_names,
+                      self.household_vars, self.household_names,
+                      self.electrical_vars, self.electrical_names))
         hesab.place(x=560,y=10)
 
 
@@ -260,7 +265,7 @@ class super :
 
         ento1=Entry(F4,textvariable=self.legumes,width=24)
         ento1.place(x=250,y=12)
-        ento2=Entry(F4,textvariable=self.householdsupplies,width=24)
+        ento2=Entry(F4,textvariable=self. householdsupplies,width=24)
         ento2.place(x=250,y=42)
         ento3=Entry(F4,textvariable=self.electricalappliances ,width=24)
         ento3.place(x=250,y=72)
@@ -493,6 +498,10 @@ class super :
         bqrnt14=Entry(FF3,textvariable=self.qqq14,width=12)
         bqrnt14.place(x=190,y=575)
         self.welcome()
+        #products prices#
+        PRICE_LEGUMES = 10
+        PRICE_HOUSEHOLD = 15
+        PRICE_ELCTRICAL = 25
 
      def welcome(self):
          self.textarea.delete('1.0',END)
@@ -503,11 +512,8 @@ class super :
          self.textarea.insert(END,f"\n\t PHONE : {self.phono.get()} ")
          self.textarea.insert(END,f"\n\t")
          self.textarea.insert(END,"\n================================================")
-         self.textarea.insert(END,f"\n price \t  number \t  purchases ")
+         self.textarea.insert(END,f"\n price \t  number \t  purchases  ")
          self.textarea.insert(END,"\n================================================")
-
-
-
   
 # root=Tk()
 # ob=super(root)
