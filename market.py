@@ -5,11 +5,13 @@ from PIL import Image, ImageTk
 import webbrowser
 import os  
 import sys
+from super import super  
 pro = Tk()
 pro.geometry('800x450+280+50')
 pro.resizable(False, False)
 pro.title('Supermarket')
 pro.iconbitmap(r'C:\super.ico')
+
 # العنوان
 title = Label(pro, text='Super Market System', fg='#F6B323', bg='black', font=('Arial', 20, 'bold'))
 title.pack(fill='x')
