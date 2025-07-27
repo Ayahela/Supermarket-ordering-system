@@ -5,7 +5,6 @@ from PIL import Image, ImageTk
 import webbrowser
 import os  
 import sys
-from super import super  
 pro = Tk()
 pro.geometry('800x450+280+50')
 pro.resizable(False, False)
