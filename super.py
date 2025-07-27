@@ -1,4 +1,4 @@
-from tkinter import*
+from tkinter import *
 import math , os ,random
 from tkinter import messagebox
 from DB import get_or_create_customer, create_bill 
