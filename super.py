@@ -240,14 +240,12 @@ class super :
         F4.place(x=790,y=650)
         hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901', command=self.charge_total)
         hesab.place(x=560,y=10)
-
-
-        fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
-        fatora.place(x=560,y=55)
+      #   fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
+      #   fatora.place(x=560,y=55)
         clear=Button(F4,text='Clear all',width=13,height=1,font='tajawal',bg='#DBA901',command=clear_all_entries )
         clear.place(x=405,y=10)
         exite=Button(F4,text='exite',width=13,height=1,font='tajawal',bg='#DBA901',command=self.exit_app)
-        exite.place(x=405,y=55)
+        exite.place(x=490,y=55)
 
         lblo1=Label(F4,text='total charge for legumes',font=('tajawal',10,'bold'),bg='#0B4C5F',fg='gold')
         lblo1.place(x=10,y=10)
