@@ -242,8 +242,8 @@ class super :
         hesab.place(x=560,y=10)
 
 
-        fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
-        fatora.place(x=560,y=55)
+        # fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
+        # fatora.place(x=560,y=55)
         clear=Button(F4,text='Clear all',width=13,height=1,font='tajawal',bg='#DBA901',command=clear_all_entries )
         clear.place(x=405,y=10)
         exite=Button(F4,text='exite',width=13,height=1,font='tajawal',bg='#DBA901',command=self.exit_app)
