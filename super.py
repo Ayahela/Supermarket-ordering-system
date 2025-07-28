@@ -1,7 +1,7 @@
 from tkinter import *
 import math , os ,random
 from tkinter import messagebox
-from DB import get_or_create_customer, create_bill 
+from DB import insert_customer, create_bill 
 import tkinter as tk
 class super :
      def _init_(self,root):
