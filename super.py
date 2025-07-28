@@ -239,25 +239,13 @@ class super :
         F4=Frame(root,bd=2,width=720,height=122,bg='#0B4C5F')
         F4.place(x=790,y=650)
         hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901', command=self.charge_total)
-<<<<<<< HEAD
-        hesab.place(x=570,y=10)
-
-
-        # fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
-        # fatora.place(x=560,y=55)
-=======
         hesab.place(x=560,y=10)
       #   fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
       #   fatora.place(x=560,y=55)
->>>>>>> 96249f22e08c8cbf4fa60635a76bec2a8ccd8742
         clear=Button(F4,text='Clear all',width=13,height=1,font='tajawal',bg='#DBA901',command=clear_all_entries )
-        clear.place(x=410,y=10)
+        clear.place(x=405,y=10)
         exite=Button(F4,text='exite',width=13,height=1,font='tajawal',bg='#DBA901',command=self.exit_app)
-<<<<<<< HEAD
-        exite.place(x=500,y=55)
-=======
         exite.place(x=490,y=55)
->>>>>>> 96249f22e08c8cbf4fa60635a76bec2a8ccd8742
 
         lblo1=Label(F4,text='total charge for legumes',font=('tajawal',10,'bold'),bg='#0B4C5F',fg='gold')
         lblo1.place(x=10,y=10)
