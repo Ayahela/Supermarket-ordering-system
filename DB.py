@@ -1,6 +1,4 @@
 import sqlite3
-from tkinter import messagebox
-import tkinter as tk
 conn = sqlite3.connect("supermarket.db")
 cursor = conn.cursor()
 cursor.execute("DROP TABLE IF EXISTS Customers")
