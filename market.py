@@ -1,6 +1,5 @@
 from tkinter import *
 import tkinter as tk
-from DB import charge_db
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import webbrowser
@@ -58,9 +57,9 @@ B2=Button(F1,text='Account On Telegram',width=26,fg='black',bg='#F6B323',font=('
 B2.place(x=1,y=180)
 B3=Button(F1,text='channel On Youtube',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'),command=OPen3)
 B3.place(x=1,y=230)
-B4=Button(F1,text='Overview Of Our Project',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'),command=about2)
+B4=Button(F1,text='Overview Of Our Project',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'),command=about1)
 B4.place(x=1,y=280)
-B5=Button(F1,text='Communication With Us',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'),command=about1)
+B5=Button(F1,text='Communication With Us',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'))
 B5.place(x=1,y=330)
 B6=Button(F1,text='Close The Website',width=26,fg='black',bg='#F6B323',font=('Arial',11, 'bold'),command=quit)
 B6.place(x=1,y=380)
@@ -88,20 +87,19 @@ image2_label.place(x=430, y=335, width=120, height=110)
 
 # # المدخلات
 L1 = Label(F2, text='Username', fg='gold', bg='#0B2F3A', font=('tajawal', 15))
-L1.place(x=10, y=22)
+L1.place(x=330, y=22)
 
 L2 = Label(F2, text='Password', fg='gold', bg='#0B2F3A', font=('tajawal', 15))
-L2.place(x=10, y=66)
+L2.place(x=330, y=66)
 
 En1 = Entry(F2, font=('tajawal', 12), justify='center')
-En1.place(x=110, y=26)
+En1.place(x=130, y=26)
 
 En2 = Entry(F2, font=('tajawal', 12), justify='center', show='*')  # تخفي كلمة السر
-En2.place(x=110, y=71)
+En2.place(x=130, y=71)
 
 B = Button(F2, text='login', bg='#F6B323', font=('bold', 17), command=log)
 # B.place(x=4, y=71)
-B.place(x=310, y=24, width=110, height=70 )
+B.place(x=10, y=25, width=110, height=70 )
 
 pro.mainloop()
-
