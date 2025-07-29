@@ -1,10 +1,30 @@
 from tkinter import *
-import math , os ,random
+import random
 from tkinter import messagebox
 from DB import create_bill,insert_customer 
-import tkinter as tk
-from DB import charge_db
+
 class super :
+     def add_bill(self):
+      bill_no = self.Ent_num.get()
+      total_price=self.total_all
+      quantity=self.quantity
+      category_price1=self.total_legumes
+      category_price2= self.total_household
+      category_price3= self.total_electrical
+      # Insert bill data into the database
+      create_bill(bill_no, quantity,category_price1,category_price2,category_price3,total_price)
+      self.charge_total()
+     def add_customer(self):
+      CustomerName = self.Ent_name.get()
+      phone = self.Ent_phone.get()
+      bill_no = self.Ent_num.get()
+
+      # Insert customer data into the database
+      insert_customer(CustomerName, phone, bill_no)
+
+      # Display customer data in the bill area
+      self.welcome()
+
      def exit_app(self):
        confirm = messagebox.askyesno("Exit", "Are you sure you want to exit?")
        if confirm:
@@ -13,10 +33,8 @@ class super :
            
      def charge_total(self):
 
-         # احصاء الاجماليات
-        total_legumes = 0
-        total_household = 0
-        total_electrical = 0
+        
+        
 
         # البقوليات
         legumes_vars = [
@@ -29,13 +47,13 @@ class super :
     ]
         for i in range(18):
           try:
-            qty = int(legumes_vars[i].get())
+            qty1 = int(legumes_vars[i].get())
           except:
-            qty = 0
-          if qty > 0:
-            price = qty * self.legumes_prices[i]
-            total_legumes += price
-            self.textarea.insert(END, f"\n{price}\t{qty}\t{legumes_names[i]}")
+            qty1 = 0
+          if qty1 > 0:
+            price = qty1 * self.legumes_prices[i]
+            self.total_legumes += price
+            self.textarea.insert(END, f"\n{price}\t{qty1}\t{legumes_names[i]}")
 
     # أدوات منزلية
         household_vars = [
@@ -49,13 +67,13 @@ class super :
     ]
         for i in range(18):
            try:
-            qty = int(household_vars[i].get())
+            qty2 = int(household_vars[i].get())
            except:
-            qty = 0
-           if qty > 0:
-            price = qty * self.household_prices[i]
-            total_household+= price
-            self.textarea.insert(END, f"\n{price}\t{qty}\t{household_names[i]}")
+            qty2 = 0
+           if qty2 > 0:
+            price = qty2 * self.household_prices[i]
+            self.total_household+= price
+            self.textarea.insert(END, f"\n{price}\t{qty2}\t{household_names[i]}")
 
     # الأجهزة الكهربائية
         electrical_vars = [
@@ -69,30 +87,35 @@ class super :
     ]
         for i in range(14):
            try:
-            qty = int(electrical_vars[i].get())
+            qty3 = int(electrical_vars[i].get())
            except:
-            qty = 0
-           if qty > 0:
-            price = qty * self.electrical_prices[i]
-            total_electrical += price
-            self.textarea.insert(END, f"\n{price}\t{qty}\t{electrical_names[i]}")
+            qty3 = 0
+           if qty3 > 0:
+            price = qty3 * self.electrical_prices[i]
+            self.total_electrical += price
+            self.textarea.insert(END, f"\n{price}\t{qty3}\t{electrical_names[i]}")
 
     # اجمالي الاقسام
-        self.legumes.set(str(total_legumes))
-        self.householdsupplies.set(str(total_household))
-        self.electricalappliances.set(str(total_electrical))
+        self.legumes.set(str(self.total_legumes))
+        self.householdsupplies.set(str(self.total_household))
+        self.electricalappliances.set(str(self.total_electrical))
 
         self.textarea.insert(END, "\n" + "=" * 48)
-        total_all = total_legumes + total_household + total_electrical
-        self.textarea.insert(END, f"\nTotal Bill: {total_all}")
+        self.total_all = self.total_legumes + self.total_household + self.total_electrical
+        self.textarea.insert(END, f"\nTotal Bill: {self.total_all}")
         self.textarea.insert(END, "\n" + "=" * 48)
-
+        self.quantity=qty1+qty2+qty3
         
 
          
 
      def __init__(self,root):
-                # === الأسعار لكل قسم ===
+        self.total_all = 0
+        self.total_legumes = 0
+        self.total_household = 0
+        self.total_electrical = 0
+        self.quantity = 0
+            # === الأسعار لكل قسم ===
         self.legumes_prices = [
             15, 12, 18, 20, 10, 14, 16, 13, 5, 10,
             8, 9, 17, 11, 7, 6, 8, 21
@@ -216,6 +239,7 @@ class super :
         bill_num.place(x=10,y=100)
 
 
+<<<<<<< HEAD
         Ent_name=Entry(F1,textvariable=self.namo,width=10)
         Ent_name.place(x=139,y=42)
         Ent_phone=Entry(F1,textvariable=self.phono,width=10)
@@ -224,6 +248,16 @@ class super :
         Ent_num.place(x=139,y=102)
         btn_customer=Button(F1,text='Add',font=('tajawal',12),width=8,height=2,bg='white',command=self.welcome)
         btn_customer.place(x=250,y=50)
+=======
+        self.Ent_name=Entry(F1,textvariable=self.namo,width=10)
+        self.Ent_name.place(x=139,y=42)
+        self.Ent_phone=Entry(F1,textvariable=self.phono,width=10)
+        self.Ent_phone.place(x=139,y=72)
+        self.Ent_num=Entry(F1,textvariable=self.bill,width=10)
+        self.Ent_num.place(x=139,y=102)
+        self.btn_customer=Button(F1,text='Add',font=('tajawal',12),width=9,height=3,bg='white',command=self.add_customer)
+        self.btn_customer.place(x=250,y=45)
+>>>>>>> 04432d8330286c52679df75c3794643c825df4af
         #======فاتورة=======
         tited=Label(F1,text='[Bills]',font=('tajawal',15,'bold'),bg='#0B4C5F',fg='gold')
         tited.place(x=135,y=135)
@@ -238,7 +272,8 @@ class super :
         #------price-------
         F4=Frame(root,bd=2,width=720,height=122,bg='#0B4C5F')
         F4.place(x=790,y=650)
-        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901', command=self.charge_total)
+        hesab = Button(F4, text='charge', width=13, height=1, font='tajawal', bg='#DBA901', command=self.add_bill
+        )
         hesab.place(x=560,y=10)
       #   fatora=Button(F4,text='import charge',width=13,height=1,font='tajawal',bg='#DBA901')
       #   fatora.place(x=560,y=55)
@@ -505,9 +540,9 @@ class super :
          self.textarea.insert(END,f"\n\t PHONE : {self.phono.get()} ")
          self.textarea.insert(END,f"\n\t")
          self.textarea.insert(END,"\n================================================")
-         self.textarea.insert(END,f"\n price \t  number \t  purchases  ")
+         self.textarea.insert(END,f"\n price \t  number \t  product  ")
          self.textarea.insert(END,"\n================================================")
-  
+     
 # root=Tk()
 # ob=super(root)
 # root.mainloop()
