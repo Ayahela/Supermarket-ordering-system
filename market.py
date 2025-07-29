@@ -1,6 +1,5 @@
 from tkinter import *
 import tkinter as tk
-from DB import charge_db
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import webbrowser
