@@ -67,7 +67,7 @@ class super :
         'electric fryer', 'ceiling fan', 'standing fan', 'television 32', 'television 43',
         'water filter', 'iron', 'cooler'
     ]
-        for i in range(18):
+        for i in range(14):
            try:
             qty = int(electrical_vars[i].get())
            except:
@@ -222,8 +222,8 @@ class super :
         Ent_phone.place(x=139,y=72)
         Ent_num=Entry(F1,textvariable=self.bill,width=10)
         Ent_num.place(x=139,y=102)
-        btn_customer=Button(F1,text='Add',font=('tajawal',12),width=9,height=3,bg='white',command=self.welcome)
-        btn_customer.place(x=250,y=45)
+        btn_customer=Button(F1,text='Add',font=('tajawal',12),width=8,height=2,bg='white',command=self.welcome)
+        btn_customer.place(x=250,y=50)
         #======فاتورة=======
         tited=Label(F1,text='[Bills]',font=('tajawal',15,'bold'),bg='#0B4C5F',fg='gold')
         tited.place(x=135,y=135)
@@ -492,9 +492,9 @@ class super :
         bqrnt14.place(x=190,y=575)
         self.welcome()
         #products prices#
-        PRICE_LEGUMES = 10
-        PRICE_HOUSEHOLD = 15
-        PRICE_ELCTRICAL = 25
+        # PRICE_LEGUMES = 10
+        # PRICE_HOUSEHOLD = 15
+        # PRICE_ELCTRICAL = 25
 
      def welcome(self):
          self.textarea.delete('1.0',END)
