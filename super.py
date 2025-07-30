@@ -1,40 +1,37 @@
 from tkinter import *
 import random
 from tkinter import messagebox
-from DB import create_bill,insert_customer 
+from DB import create_bill,insert_customer
 
 class super :
-     def add_bill(self):
+     
+    def add_bill(self):
+      self.charge_total()  # احسبي الأول
       bill_no = self.Ent_num.get()
-      total_price=self.total_all
-      quantity=self.quantity
-      category_price1=self.total_legumes
-      category_price2= self.total_household
-      category_price3= self.total_electrical
-      # Insert bill data into the database
-      create_bill(bill_no, quantity,category_price1,category_price2,category_price3,total_price)
-      self.charge_total()
-     def add_customer(self):
+      total_price = self.total_all
+      category_price1 = self.total_legumes
+      category_price2 = self.total_household
+      category_price3 = self.total_electrical
+      create_bill(bill_no, category_price1, category_price2, category_price3, total_price)
+
+    def add_customer(self):
       CustomerName = self.Ent_name.get()
       phone = self.Ent_phone.get()
       bill_no = self.Ent_num.get()
 
       # Insert customer data into the database
       insert_customer(CustomerName, phone, bill_no)
-
+      messagebox.showinfo("Success", "Customer added successfully!")
       # Display customer data in the bill area
       self.welcome()
 
-     def exit_app(self):
+    def exit_app(self):
        confirm = messagebox.askyesno("Exit", "Are you sure you want to exit?")
        if confirm:
          self.root.destroy()
 
            
-     def charge_total(self):
-
-        
-        
+    def charge_total(self):
 
         # البقوليات
         legumes_vars = [
@@ -96,9 +93,9 @@ class super :
             self.textarea.insert(END, f"\n{price}\t{qty3}\t{electrical_names[i]}")
 
     # اجمالي الاقسام
-        self.legumes.set(str(self.total_legumes))
-        self.householdsupplies.set(str(self.total_household))
-        self.electricalappliances.set(str(self.total_electrical))
+        self.legumes.set(float(self.total_legumes))
+        self.householdsupplies.set(float(self.total_household))
+        self.electricalappliances.set(float(self.total_electrical))
 
         self.textarea.insert(END, "\n" + "=" * 48)
         self.total_all = self.total_legumes + self.total_household + self.total_electrical
@@ -109,7 +106,7 @@ class super :
 
          
 
-     def __init__(self,root):
+    def __init__(self,root):
         self.total_all = 0
         self.total_legumes = 0
         self.total_household = 0
@@ -520,7 +517,7 @@ class super :
         PRICE_HOUSEHOLD = 15
         PRICE_ELCTRICAL = 25
 
-     def welcome(self):
+    def welcome(self):
          self.textarea.delete('1.0',END)
          self.textarea.insert(END,"\t welcome to super market ")
          self.textarea.insert(END,"\n================================================")
